@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title>{{ 'calender.calender' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" fill="solid" [routerLink]="'/testreport'" routerDirection="forward">
+        <ion-text>PDF</ion-text>
+        <ion-icon name="download"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+      <ion-card-header tappable (click)="collapseCard = !collapseCard">
+          <ion-card-title>{{ 'calender.New Event' | translate }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="collapseCard">
+          <form [formGroup]="eventform">
+          <ion-item>
+            <ion-input type="text" placeholder="{{ 'calender.Title' | translate }}" formControlName="title" ngDefaultControl [(ngModel)]="newevent.title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="desc" placeholder="{{ 'calender.Description' | translate }}" ngDefaultControl [(ngModel)]="newevent.desc"></ion-input>
+          </ion-item>
+          <ion-item>
+             <ion-datetime placeholder="{{ 'calender.Starttime' | translate }}" displayFormat="MM/DD/YYYY HH:mm:ss" pickerFormat="MMM D:HH:mm" [ngModelOptions]="{standalone: true}" [(ngModel)]="newevent.starttime" [min]="minDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+             <ion-datetime placeholder="{{ 'calender.Endtime' | translate }}" displayFormat="MM/DD/YYYY HH:mm:ss" pickerFormat="MMM D:HH:mm" [ngModelOptions]="{standalone: true}" [(ngModel)]="newevent.endtime" [min]="minDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="travel" placeholder="{{ 'calender.ta' | translate }} ex. 100"  ngDefaultControl [(ngModel)]="newevent.ta"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="daily" placeholder="{{ 'calender.da' | translate }} ex. 50" ngDefaultControl [(ngModel)]="newevent.da"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="absent" placeholder="{{ 'calender.absent' | translate }} ex. 3.5" ngDefaultControl [(ngModel)]="newevent.absent_hrs"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="poa" placeholder="{{ 'calender.poa' | translate }}" ngDefaultControl [(ngModel)]="newevent.poa"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="pod" placeholder="{{ 'calender.pod' | translate }}"  ngDefaultControl [(ngModel)]="newevent.pod"></ion-input>
+          </ion-item>
+        </form>
+          <!-- ion-item>
+            <ion-label>All Day?</ion-label>
+            <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+              <ion-label type="floating">Amount</ion-label>
+             <ion-input type="text" [(ngModel)]="event.amount"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label type="floating">Allowance</ion-label>
+             <ion-input type="text" [(ngModel)]="event.allowance"></ion-input>
+          </ion-item-->
+          <ion-button slot="start" (click)="addEvent()" [disabled]="!eventform.valid">Add Event</ion-button>
+          <!-- ion-button slot="center" (click)="createpdf()">PDF</ion-button>
+          <ion-button slot="end" [disabled]="!pdf" (click)="downloadpdf()">DownloadPDF</ion-button-->
+          <ion-button slot="center" color="primary" fill="solid" (click)="listEvent()">Show Events</ion-button>   
+          <ion-button slot="end" color="primary" fill="solid" (click)="flushall()">Flush</ion-button>
+            </ion-card-content>
+      </ion-card>
+      <ion-grid>
+          <ion-row justify-content-top align-items-start>  </ion-row>
+          <ion-card>
+             <ion-card-title (click)="collapse = !collapse">{{ 'calender.Event List' | translate }} - {{ listing }}</ion-card-title>
+            <ion-card-content *ngIf="!collapse">
+          <ion-row justify-content-center align-items-center>
+            <ion-col col-1 class="ion-align-self-start" class="heading">
+              <div>{{ 'calender.Event Title' | translate }}</div>
+            </ion-col>
+            <ion-col col-2 class="ion-align-self-center" class="heading">
+              <div>{{ 'calender.Start' | translate }}</div>
+            </ion-col>
+            <!--ion-col col-3 class="ion-align-self-end" class="heading">
+              <div>{{ 'calender.End' | translate }}</div>
+            </ion-col-->
+            </ion-row>
+            <ion-row  *ngFor="let event of eventsdisplay">
+              <ion-col col-1>
+                <ion-item (click)="eventdet.ionViewDidEnter(event.eventid, goffset)" [routerLink]="'/eventdetail'" routerDirection="forward" >
+                    <ion-icon name="more"></ion-icon>
+                    <ion-label color="primary">{{ event.title }}</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-2>
+                <ion-item>
+                <ion-datetime displayFormat="HH:mm" readonly="true" [(ngModel)]="event.starttime"></ion-datetime>
+              </ion-item>
+              </ion-col>
+              <!--ion-col col-3>
+                <ion-item>
+                <ion-datetime displayFormat="HH:mm" readonly="true" [(ngModel)]="event.endtime"></ion-datetime>
+              </ion-item>
+              </ion-col-->
+            </ion-row>
+            </ion-card-content>
+            </ion-card>
+        </ion-grid>
+        <ion-card>
+          <ion-card-content>
+          <ion-grid>
+          <ion-row>
+            <ion-col>
+        <ion-buttons>
+          <ion-button slot="start" fill="solid" color="secondary" (click)="back()">
+            <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col align-self="center">
+        <ion-item>
+            <ion-label color="dark">{{ month }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self="center">
+        <ion-item>
+            <ion-label>{{ year }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-buttons>
+          <!-- Move forward one screen of the slides -->
+           <ion-button slot="end" fill="solid" color="secondary" (click)="next()">
+            <ion-icon name="arrow-forward"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    </ion-card>
+      <!-- ion-card>
+        <ion-card-content>
+        <ion-button slot="start" color="primary" fill="solid" (click)="deleteEvent()">Delete Event</ion-button>
+        <ion-button slot="end" color="primary" fill="solid" (click)="showdetails()">Show Details</ion-button>
+        </ion-card-content>
+      </ion-card-->
+      <calendar 
+      [eventSource]="eventSource"
+      (onTimeSelected)="onTimeSelected($event)"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      startHour="6"
+      endHour="20"
+      step="30"
+      startingDayWeek="1"
+      noEventsLabel=""
+      showEventDetail="true"
+      [lockSwipes]="false"
+      [(ngModel)]="date"
+      [monthviewDisplayEventTemplate]="template">
+      </calendar>   
+      <ng-template #template let-view="view" let-row="row" let-col="col">
+        <!-- If there are events on selected day, show a check icon -->
+        <div *ngIf="view.dates[row*7+col].events.length>0">
+          <ion-icon name="checkmark-circle" color="secondary"></ion-icon>
+        </div>
+        <!-- If no events, show day as normally -->
+        <div *ngIf="(view.dates[row*7+col].events.length)===0">
+          <div>
+            {{view.dates[row*7+col].label}}
+          </div>
+        </div>
+      </ng-template>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'editevent.Edit' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form name="editform">
+      <ion-item>
+          <ion-input type="text" placeholder= "{{ 'editevent.Title' | translate }}" class="item" name="title"  [(ngModel)] = "curreventdet.title" [disabled]="inactive"></ion-input>
+        </ion-item>
+      <ion-item>
+          <ion-input type="text" placeholder="{{ 'editevent.Description' | translate }}" class="item" name="desc"  [(ngModel)] = "curreventdet.desc" [disabled]="inactive" ></ion-input>
+        </ion-item>
+        <!--ion-item>
+          <ion-input type="text" placeholder="Description" formControlName="desc" ngDefaultControl [(ngModel)]="newevent.desc"></ion-input>
+        </ion-item-->
+        <ion-item>
+           <ion-datetime placeholder="{{ 'editevent.Starttime' | translate }}" displayFormat="MM/DD/YYYY HH:mm:ss" pickerFormat="MMM D:HH:mm" name="starttime" [(ngModel)]="curreventdet.starttime" [min]="minDate" class="item" [disabled]="inactive"></ion-datetime>
+        </ion-item>
+        <ion-item>
+           <ion-datetime placeholder="{{ 'editevent.Endtime' | translate }}" displayFormat="MM/DD/YYYY HH:mm:ss" pickerFormat="MMM D:HH:mm" name="endtime" [(ngModel)]="curreventdet.endtime" [min]="minDate" class="item" [disabled]="inactive"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="{{ 'editevent.ta' | translate }}"  class="item" name = "ta" [(ngModel)]="curreventdet.ta" [disabled]="inactive"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="{{ 'editevent.da' | translate }}" class="item" name = "da" [(ngModel)]="curreventdet.da" [disabled]="inactive"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="{{ 'editevent.absent' | translate }}" class="item" name = "absent_hrs" [(ngModel)]="curreventdet.absent_hrs" [disabled]="inactive"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="{{ 'editevent.poa' | translate }}" class="item" name = "poa" [(ngModel)]="curreventdet.poa" [disabled]="inactive"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="{{ 'editevent.pod' | translate }}"  class="item" name = "pod" [(ngModel)]="curreventdet.pod" [disabled]="inactive"></ion-input>
+        </ion-item>
+        <ion-buttons>
+              <!--ion-button *ngIf="!toggle" slot="start" color="primary" fill="solid" (click)=enableedit() [disabled]="!inactive">Edit</ion-button-->
+              <ion-button slot="end" color="primary" fill="solid" (click)=disableedit()  [disabled]="inactive">Cancel</ion-button>
+              <ion-button slot="end" color="primary" fill="solid" (click)=saveedit() [disabled]="inactive">Save</ion-button>
+        </ion-buttons>
+        </form>
+</ion-content>

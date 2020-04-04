@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'testreport.Reports' | translate }}</ion-title>
+    <ion-buttons slot="end">
+        <ion-back-button text="Back" color="primary" defaultHref="calender"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-datetime placeholder= "{{ 'testreport.startime' | translate }}" displayFormat="MM/DD/YYYY" name="reportstart" [(ngModel)]="reportstart" class="item"></ion-datetime>
+     </ion-item>
+     <ion-item>
+        <ion-datetime placeholder="{{ 'testreport.endtime' | translate }}" displayFormat="MM/DD/YYYY" name="reportend" [(ngModel)]="reportend" class="item"></ion-datetime>
+     </ion-item>
+     <ion-item>
+      <ion-input type="text" placeholder="{{ 'testreport.reportfor' | translate }}" class="item" name = "name" [(ngModel)]="name"></ion-input>
+    </ion-item>
+<ion-buttons>
+  <ion-button slot="start" color="primary" fill="solid" (click)=genreport()>Generate PDF</ion-button>
+</ion-buttons>
+</ion-content>

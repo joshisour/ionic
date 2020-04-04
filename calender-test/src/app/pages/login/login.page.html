@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-card>
+     <ion-card-content>
+        <ion-item>
+          <ion-label color="primary">Langauge</ion-label>
+          <ion-select placeholder="Select" [(ngModel)]="lang" (ionCancel)="cancel()" (ionChange)="change()">
+            <ion-select-option value="en">English</ion-select-option>
+            <ion-select-option value="mar">Marathi</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+</ion-content>

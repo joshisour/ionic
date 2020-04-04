@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS profile(empid INTEGER PRIMARY KEY AUTOINCREMENT,userid TEXT TYPE UNIQUE , name TEXT,position TEXT);
+ 
+CREATE TABLE IF NOT EXISTS events(eventid INTEGER PRIMARY KEY AUTOINCREMENT,empid,date TEXT,title TEXT,desc TEXT, starttime TEXT, endtime TEXT, ta INTEGER, da INTEGER,absent_hrs TEXT, poa TEXT, pod TEXT);

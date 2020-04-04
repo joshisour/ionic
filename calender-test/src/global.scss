@@ -1,0 +1,41 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+.event-detail-container {
+  display: none;
+  max-height: 0%;
+  height: auto;
+  border-top: 0px;
+  
+  }
+  ion-item {
+      --padding-start: 0px;
+      --inner-padding-end: 0px;
+      --padding-end: 0px;
+  }
+  div.monthview-container {
+      --padding-start: 0px;
+      --inner-padding-end: 0px;
+      --padding-end: 0px;
+    }
+    ion-content {
+      --padding-start: 0px;
+      --inner-padding-end: 0px;
+      --padding-end: 0px;
+    }
+    ion-col{
+
+      --padding-start: 0px;
+      --inner-padding-end: 0px;
+      --padding-end: 0px;
+
+    }

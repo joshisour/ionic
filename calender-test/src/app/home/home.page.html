@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <!--{{ viewTitle }}-->
+      {{ 'Hello' | translate :param }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="today()">Today</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+ 
+  <!-- Card for adding a new event -->
+  <ion-card>
+    <ion-card-header tappable (click)="collapseCard = !collapseCard">
+      <ion-card-title>New Event</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!collapseCard">
+ 
+      <ion-item>
+        <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Description" [(ngModel)]="event.desc"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Start</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>End</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>All Day?</ion-label>
+        <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label type="floating">Amount</ion-label>
+         <ion-input type="text" [(ngModel)]="event.amount"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label type="floating">Allowance</ion-label>
+         <ion-input type="text" [(ngModel)]="event.allowance"></ion-input>
+      </ion-item>
+      <ion-button slot="start" (click)="addEvent()" [disabled]="event.title == ''">Add Event</ion-button>
+      <ion-button slot="center" (click)="createpdf()">PDF</ion-button>
+      <ion-button slot="end" [disabled]="!pdf" (click)="utctolocal()">DownloadPDF</ion-button>
+      <ion-button slot="end" (click)="utctolocal()">Local</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title (click) = "displayEvent()" >Events List</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+    <ion-item *ngFor="let event of eventarray; let i = index; let f=first; let l=last;">
+    <p> {{event.title}} </p>
+  </ion-item> 
+</ion-list>
+      </ion-card-content>
+  </ion-card>
+  <calendar 
+  [eventSource]="eventSource" 
+  [calendarMode]="calendar.mode" 
+  [currentDate]="calendar.currentDate"
+  (onEventSelected)="onEventSelected($event)"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onTimeSelected)="onTimeSelected($event)"
+  startHour="6"
+  endHour="20"
+  step="30"
+  startingDayWeek="1"
+  noEventsLabel=""
+  showEventDetail="false"
+  [(ngModel)]="date"
+  [monthviewDisplayEventTemplate]="template">
+  </calendar>
+  <ng-template #template let-view="view" let-row="row" let-col="col">
+
+      <!-- If there are events on selected day, show a check icon -->
+      <div *ngIf="view.dates[row*7+col].events.length>0">
+          {{view.dates[row*7+col].label}}
+        <ion-icon name="checkmark-circle" size="small" font-size="8px" color="primary">
+        </ion-icon>
+      </div>
+  
+      <!-- If no events, show day as normally -->
+      <div *ngIf="(view.dates[row*7+col].events.length)===0">
+        <div>
+          {{view.dates[row*7+col].label}}
+        </div>
+      </div>
+  
+    </ng-template>
+<!-- (onTimeSelected)="onTimeSelected($event)"-->
+
+</ion-content>

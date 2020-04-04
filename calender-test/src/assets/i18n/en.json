@@ -1,0 +1,52 @@
+{ 
+    "testreport":  {
+                  "Reports": "Reports",
+                  "startime": "Starting Date of Report",
+                  "endtime": "End Date of Report",
+                  "reportfor": "Name"
+  
+      },
+      "editevent": {
+        "Edit": "Edit",
+        "Title" : "Title",
+        "Description" : "Description",
+        "Starttime" : "Starttime",
+        "Endtime": "Endtime",
+        "ta": "Travel Allowance",
+        "da": "Daily Allowance",
+        "absent": "Absent(in Hours)",
+        "poa": "Place of Arrival",
+        "pod": "Place of Departure"
+
+    },
+    "eventdetail": {
+        "Eventdet": "Event Detail",
+        "Title" : "Title:",
+        "Description" : "Description:",
+        "Starttime" : "Starttime:",
+        "Endtime": "Endtime:",
+        "ta": "Travel Allowance:",
+        "da": "Daily Allowance:",
+        "absent": "Absent(in Hours):",
+        "poa": "Place of Arrival:",
+        "pod": "Place of Departure:"
+  },
+  "calender": {
+        "calender": "Calender",
+        "New Event": "New Event",
+        "Title": "Title",
+        "Description": "Description",
+        "Starttime": "Starttime",
+        "Endtime": "Endtime",
+        "ta": "Travel Allowance",
+        "da":"Daily Allowance",
+        "absent": "Absent (in Hours)",
+        "poa": "Place of Arrival",
+        "pod": "Place of Departure",
+        "Event List": "Event List",
+        "Event Title": "Event Title",
+        "Start": "Start Time",
+        "End": "End Time"
+
+}
+}

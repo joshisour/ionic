@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title >{{ 'eventdetail.Eventdet' | translate }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-back-button text="Back" color="primary" defaultHref="calender"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-grid>
+  <ion-row justify-content-center align-items-center>
+    <ion-col col-1 class="ion-align-self-start">
+      <ion-item>
+        <ion-label color="dark">{{ 'eventdetail.Title' | translate }}</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2 class="ion-align-self-center">
+      <ion-item>
+        <ion-label>{{eventdet.title}} </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+    <ion-row>
+    <ion-col col-1>
+        <ion-item>
+          <ion-label color="dark"> {{ 'eventdetail.Description' | translate }}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label>{{eventdet.desc}} </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1>
+          <ion-item>
+            <ion-label color="dark"> {{ 'eventdetail.Starttime' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2>
+          <ion-item>
+            <ion-label>{{eventdet.starttime}} </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1>
+            <ion-item>
+              <ion-label color="dark"> {{ 'eventdetail.Endtime' | translate }}</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <ion-item>
+              <ion-label>{{eventdet.endtime}} </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-1>
+              <ion-item>
+                <ion-label color="dark"> {{ 'eventdetail.ta' | translate }}</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2>
+              <ion-item>
+                <ion-label>{{eventdet.ta}} </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+            <ion-col col-1>
+                <ion-item>
+                  <ion-label color="dark"> {{ 'eventdetail.da' | translate }}</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-2>
+                <ion-item>
+                  <ion-label>{{eventdet.da}} </ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          <ion-row>
+              <ion-col col-1>
+        <ion-item>
+          <ion-label color="dark"> {{ 'eventdetail.absent' | translate }}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label>{{eventdet.absent_hrs}} </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  <ion-row>
+      <ion-col col-1>
+          <ion-item>
+            <ion-label color="dark"> {{ 'eventdetail.poa' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+      <ion-col col-2>
+          <ion-item>
+            <ion-label>{{eventdet.poa}} </ion-label>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  <ion-row>
+      <ion-col col-1>
+          <ion-item>
+            <ion-label color="dark"> {{ 'eventdetail.pod' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2>
+          <ion-item>
+            <ion-label>{{eventdet.pod}} </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+ </ion-grid>
+<ion-buttons>
+  <ion-button>
+      <ion-button slot="start" color="primary" fill="solid" (click)="ondeleteAlert()">Delete</ion-button>
+      <ion-button slot="end" color="primary" fill="solid" (click)="senddatadb()">Edit</ion-button>
+  </ion-button>
+</ion-buttons>
+</ion-content>
